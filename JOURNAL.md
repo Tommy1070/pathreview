@@ -16,12 +16,12 @@ The issue is caused by a unit test that is intended to verify partial keyword ov
 **Cohort ledger:**  [x] Issue added to cohort ledger
 ## Week 8 — Reproduction & solution planning
 
-**Reproduction commit link:** [Add after committing and pushing]
+**Reproduction commit link:** https://github.com/Tommy1070/pathreview/commit/5394f6c
 
 **Reproduction summary:**
 I reproduced the issue by running `pytest tests/unit/test_relevance_scorer.py -q`. The `test_query_with_partial_overlap` test failed because the query `"Python Django web framework"` and the test chunk share all four query terms, causing the relevance scorer to return `1.0` instead of the expected partial-overlap range of `0.3` to `0.9`.
 
-**PLAN.md link:** [Add after creating and pushing PLAN.md]
+**PLAN.md link:** https://github.com/Tommy1070/pathreview/blob/test/157-fix-partial-overlap-fixture/PLAN.md
 
 **Walkthrough video (recommended):** Not recorded
 
