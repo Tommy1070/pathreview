@@ -46,7 +46,40 @@ The local pre-commit hook fails because of a corrupted virtualenv cache on my ma
 
 ### Check-in 2 (end of week)
 
-**PR link:**
+**PR link:** https://github.com/ascherj/pathreview/pull/XXX
+## Summary
+
+This PR fixes the test fixture used by `test_query_with_partial_overlap` in the relevance scorer tests. The previous fixture unintentionally contained all four query terms, causing the scorer to correctly return a perfect relevance score of `1.0`. The updated fixture now contains only a subset of the query terms so the test accurately validates partial-overlap behavior.
+
+## Issue
+
+Closes #157
+
+## Changes
+
+- Updated the fixture in `tests/unit/test_relevance_scorer.py`
+- Replaced the full-overlap chunk with a true partial-overlap chunk
+- Left the relevance scorer implementation unchanged because the issue was with the test fixture, not the scoring logic
+
+## Testing
+
+- [ ] Unit tests pass (`make test-unit`)
+- [ ] Integration tests pass (`make test-integration`)
+- [ ] Linter passes (`make lint`)
+- [ ] Type checker passes (`make typecheck`)
+- [x] New/updated tests cover the changes
+
+## Screenshots / Demo
+
+Not applicable.
+
+## Notes for Reviewers
+
+This PR only updates the fixture in `tests/unit/test_relevance_scorer.py`.
+
+I verified that `test_query_with_partial_overlap` passes after updating the fixture.
+
+The repository currently has pre-existing failures in the full `make test-unit` suite and existing lint issues unrelated to this change. This PR modifies only `tests/unit/test_relevance_scorer.py` and does not address those unrelated failures.
 
 **Branch:** `test/157-fix-partial-overlap-fixture`
 
