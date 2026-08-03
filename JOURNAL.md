@@ -37,7 +37,7 @@ I still need to determine which query term should be removed or replaced so the 
 I reviewed my solution plan and updated the partial-overlap test fixture in `tests/unit/test_relevance_scorer.py`. The original fixture contained all four query terms, which caused a full-overlap score of `1.0`. I changed the test data so it now represents a true partial-overlap case.
 
 **Next steps:**
-Run the full relevance scorer tests, open a pull request, request feedback if available, and complete the final submission.
+Open the pull request, complete the PR template, request feedback if available, and submit the final PR for review..
 
 **Blockers:**
 The local pre-commit hook fails because of a corrupted virtualenv cache on my machine. I verified my changes manually and committed with `--no-verify`.
@@ -46,7 +46,7 @@ The local pre-commit hook fails because of a corrupted virtualenv cache on my ma
 
 ### Check-in 2 (end of week)
 
-**PR link:** *(Paste your PR link here after you create it.)*
+**PR link:**
 
 **Branch:** `test/157-fix-partial-overlap-fixture`
 
