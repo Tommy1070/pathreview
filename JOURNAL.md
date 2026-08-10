@@ -46,7 +46,7 @@ The local pre-commit hook fails because of a corrupted virtualenv cache on my ma
 
 ### Check-in 2 (end of week)
 
-**PR link:** https://github.com/ascherj/pathreview/pull/XXX
+**PR link:** https://github.com/ascherj/pathreview/pull/712
 ## Summary
 
 This PR fixes the test fixture used by `test_query_with_partial_overlap` in the relevance scorer tests. The previous fixture unintentionally contained all four query terms, causing the scorer to correctly return a perfect relevance score of `1.0`. The updated fixture now contains only a subset of the query terms so the test accurately validates partial-overlap behavior.
@@ -95,3 +95,34 @@ Updated `tests/unit/test_relevance_scorer.py`. Specifically, I modified `test_qu
 
 **Notes:**
 `make check` reports existing unrelated Ruff lint errors elsewhere in the repository. My change only modifies `tests/unit/test_relevance_scorer.py` and does not introduce additional lint issues.
+
+## Week 10 — Iteration & reflection
+
+### Reviewer feedback
+
+**Feedback received:** [ ] Yes  [x] No — still awaiting review
+
+**Summary of feedback:**
+No reviewer feedback was received. Reviewer feedback is not provided as part of the Summer 2026 version of this assignment, so there were no maintainer comments that I needed to address.
+
+**How you responded:**
+Since no reviewer feedback was received, I did not have any reviewer-requested changes or comments to respond to.
+
+---
+
+### Reflection
+
+**What was harder than you expected?**
+The hardest part was understanding exactly why the fixture in Issue #157 was incorrect rather than just changing the test until it passed. The `test_query_with_partial_overlap` fixture originally contained all four terms from the query `"Python Django web framework"`, which caused the relevance scorer to return `1.0`. During the process, one of my attempted fixture changes produced a score of `0.25`, which was still below the expected `0.3 < score < 0.9` range, so I had to adjust the test data again before reaching a valid partial-overlap case.
+
+**What did you learn about working in a large codebase?**
+I learned that even a small change in an existing codebase requires understanding the intent behind the surrounding code and tests. For this issue, I had to determine whether the problem was in the relevance scorer itself or only in `tests/unit/test_relevance_scorer.py`. Writing `PLAN.md` helped me keep the change focused on the incorrect fixture instead of unnecessarily modifying the scoring implementation.
+
+**How did AI tools help — and where did they fall short?**
+AI helped me understand unfamiliar parts of the PathReview repository, interpret pytest output, work through Git commands, and reason about why the partial-overlap fixture was producing the wrong score. It also helped me organize my `PLAN.md` and `JOURNAL.md` while documenting the contribution process. However, I still had to run the actual tests and verify the results myself because an AI suggestion could not guarantee that a particular fixture would produce a score inside the required range.
+
+**What would you do differently if you started over?**
+If I started over, I would test several controlled query and chunk combinations before choosing the replacement fixture. That would have helped me understand the scoring behavior earlier and avoid the intermediate change that returned `0.25`. I would also document my commands and test results in `JOURNAL.md` as I worked instead of reconstructing some of the details later.
+
+**What are you most proud of from this module?**
+I am most proud of completing the full open-source contribution process instead of only making a code change. I selected Issue #157, reproduced the failure, created the `test/157-fix-partial-overlap-fixture` branch, wrote a solution in `PLAN.md`, updated `tests/unit/test_relevance_scorer.py`, worked through test results, and submitted PR #712. Going through the entire workflow gave me a better understanding of how contributing to someone else's repository differs from building a project on my own.
